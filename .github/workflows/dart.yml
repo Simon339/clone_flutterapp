@@ -23,7 +23,7 @@ jobs:
       - uses: subosito/flutter-action@v1
         with:
           channel: "stable"
-          flutter-version: '2.8.1'
+          flutter-version: '3.13.0'
       - run: |
           flutter doctor
           flutter pub get
