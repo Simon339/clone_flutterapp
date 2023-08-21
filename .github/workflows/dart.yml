@@ -1,9 +1,15 @@
-name: CI
+name: test
 on:
   pull_request:
     branches:
       - main
+      - staging
+      - development
   push:
+    branches:
+      - main
+      - staging
+      - development
 
 jobs:
   flutter_test:
@@ -14,17 +20,16 @@ jobs:
       - uses: actions/setup-java@v1
         with:
           java-version: "12.x"
-      - uses: sudosito/flutter-action@v1
+      - uses: subosito/flutter-action@v1
         with:
           channel: "stable"
-      - run: flutter pub get
-      - run: flutter analyze
-      - run: flutter test
-
-  build:
-    name: Build and test app
-    runs-on: ubuntu-latest
-    steps:
+          flutter-version: '2.8.1'
+      - run: |
+          flutter doctor
+          flutter pub get
+          flutter test --coverage
+          flutter analyze
+          bash <(curl -s https://codecov.io/bash -t ${{ secrets.CODECOV_TOKEN }})
       - uses: actions/checkout@v2
 
       - name: Install dependencies
