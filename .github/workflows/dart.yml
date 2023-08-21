@@ -29,6 +29,7 @@ jobs:
           flutter pub get
           flutter test --coverage
           flutter analyze
+          flutter upgrade
           bash <(curl -s https://codecov.io/bash -t ${{ secrets.CODECOV_TOKEN }})
       - uses: actions/checkout@v2
 
