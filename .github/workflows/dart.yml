@@ -2,7 +2,7 @@ name: Flutter unit tests
 on:
   push:
     branches:
-      - master
+      - main
 
 jobs:
   unit_tests:
